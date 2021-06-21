@@ -1,5 +1,9 @@
 # yolo.py
-A custom Python implementation of YOLOv5 algorithm.
+<h3 align="center">A custom Python implementation of YOLOv5 algorithm</h2>
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=19mqTy_G3Ut54NSiB9ooZ_gKwRBsKjt0-"/>
+  <br>
+</p>
 
 ## Installation
 The first step that we gotta do is downloading all depencencies necessary to run the 
