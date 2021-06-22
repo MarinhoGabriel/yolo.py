@@ -47,8 +47,8 @@ def draw_lines(elements, draw, color_yes, color_no, square, area, outline):
                                 (element["xmin"], element["ymin"])])
 
             if not has:
-                for line in square:
-                    if line.intersects(line):
+                for square_line in square:
+                    if line.intersects(square_line):
                         has = True
 
             if has:
