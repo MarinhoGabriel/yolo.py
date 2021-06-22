@@ -47,7 +47,7 @@ To run, we just need to open the terminal at the project directory and type
 ```shell
 $ python3 main.py pics_folder target_folder
 ```
-<br>
+
 It's important to say, again, that Python 3.6+ is needed to run because of the Yolov5 model.
 
 ## References
