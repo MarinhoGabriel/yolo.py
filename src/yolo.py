@@ -23,7 +23,7 @@ def detect(input_file):
 
     return people, vehicles
 
-def draw_lines(elements, draw, color_yes, color_no, square, area):
+def draw_lines(elements, draw, color_yes, color_no, square, area, outline):
     # The function below is responsible for painting/drawing the box arround the 
     # element (a passerby or a vehicle) or paint the current car boxes depending
     # on the intersection of the objects within the car's bounding boxes.
@@ -32,7 +32,7 @@ def draw_lines(elements, draw, color_yes, color_no, square, area):
         for element in elements:
             draw.rectangle([(element["xmin"], element["ymin"]), 
                             (element["xmax"], element["ymax"])], 
-                            outline="red")
+                            outline=outline)
             line = LineString([(element["xmin"], element["ymax"]), 
                                 (element["xmin"], element["ymin"])])
 
@@ -63,8 +63,8 @@ def start(path):
             draw.line(utils.PASSERBY_AREA, fill ="green", width=5)
             draw.line(utils.VEHICLE_AREA, fill ="green", width=5)
         else:
-            draw_lines(passersby, draw, "red", "green", utils.PASSERBY_SQUARE, utils.PASSERBY_AREA)
-            draw_lines(passersby, draw, "red", "green", utils.VEHICLE_SQUARE, utils.VEHICLE_AREA)
+            draw_lines(passersby, draw, "red", "green", utils.PASSERBY_SQUARE, utils.PASSERBY_AREA, "blue")
+            draw_lines(vehicles, draw, "red", "green", utils.VEHICLE_SQUARE, utils.VEHICLE_AREA, "cyan")
 
         im.convert('RGB').save('results-semantic/{}.jpg'.format(img_count))
         img_count += 1
