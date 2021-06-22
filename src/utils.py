@@ -38,14 +38,16 @@ VEHICLE_SQUARE = [LineString([(640 - 485, 720),(640 - 150, 720 - 250)]),
 # The following array is responsible for storing all classes that are going
 # to be considered as passersby. All of the following classes are going to
 # define the color of the PASSERBY_AREA square.
-PASSERBY_TARGET = ["person", "dog", "bird", "cat", "dog", "horse", "sheep", "cow", "elephant", "bear", 
-                "zebra", "giraffe", "kite", "teddy bear"]
+PASSERBY_TARGET = ["person", "dog", "bird", "cat", "dog", "horse", "sheep", 
+                "cow", "elephant", "bear", "zebra", "giraffe", "kite", 
+                "teddy bear"]
 
 # The following array works as the aboce one: it's an array of vehicles 
 # classes that are going to be avoided by the car.
 VEHICLE_TARGET = ["car", "bus", "truck", "motorbike", "bicycle"]
 
 def get_img_files(path):
-    # The following function is responsible for getting all the pictures that we are going to
-    # detect the objects. It has a parameter, which is the base directory of all of them.
+    # The following function is responsible for getting all the pictures 
+    # that we are going to detect the objects. It has a parameter, which is 
+    # the base directory of all of them.
     return sorted(filter(os.path.isfile, glob.glob(path + '/*')))
