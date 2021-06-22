@@ -48,5 +48,4 @@ VEHICLE_TARGET = ["car", "bus", "truck", "motorbike", "bicycle"]
 def get_img_files(path):
     # The following function is responsible for getting all the pictures that we are going to
     # detect the objects. It has a parameter, which is the base directory of all of them.
-    # path = "/mnt/Development/passerby_crossing_between_cars0/passerby_crossing_between_cars0/semantic_segmentation"
     return sorted(filter(os.path.isfile, glob.glob(path + '/*')))
