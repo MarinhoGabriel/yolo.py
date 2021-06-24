@@ -1,7 +1,7 @@
 import torch
 from PIL import Image, ImageDraw
 from shapely.geometry import LineString
-import utils
+import utilities
 
 # Model used in the object detection step, using the YOLOv5 algorithm.
 model = None
@@ -18,8 +18,8 @@ def detect(input_file):
     # that the vehicle needa do.
     results = model(input_file)
     df = results.pandas().xyxy[0]
-    people = [row for index, row in df.iterrows() if row["name"] in utils.PASSERBY_TARGET]
-    vehicles = [row for index, row in df.iterrows() if row["name"] in utils.VEHICLE_TARGET]
+    people = [row for index, row in df.iterrows() if row["name"] in utilities.PASSERBY_TARGET]
+    vehicles = [row for index, row in df.iterrows() if row["name"] in utilities.VEHICLE_TARGET]
 
     return people, vehicles
 
@@ -60,8 +60,9 @@ def draw_lines(elements, draw, color_yes, color_no, square, area, outline):
 
 def start(path, target_folder):
     # Starts the detection process, using the path and target passed as args.
+    init_model()
     img_count = 1
-    files = utils.get_img_files(path)
+    files = utilities.get_img_files(path)
 
     for file in files:
         passersby, vehicles = detect(file)
@@ -70,13 +71,13 @@ def start(path, target_folder):
         draw = ImageDraw.Draw(im)
 
         if not passersby and not vehicles:        
-            draw.line(utils.PASSERBY_AREA, fill ="green", width=5)
-            draw.line(utils.VEHICLE_AREA, fill ="green", width=5)
+            draw.line(utilities.PASSERBY_AREA, fill ="green", width=5)
+            draw.line(utilities.VEHICLE_AREA, fill ="green", width=5)
         else:
-            draw_lines(passersby, draw, "red", "green", utils.PASSERBY_SQUARE, 
-                    utils.PASSERBY_AREA, "red")
-            draw_lines(vehicles, draw, "yellow", "green", utils.VEHICLE_SQUARE, 
-                    utils.VEHICLE_AREA, "cyan")
+            draw_lines(passersby, draw, "red", "green", utilities.PASSERBY_SQUARE, 
+                    utilities.PASSERBY_AREA, "red")
+            draw_lines(vehicles, draw, "yellow", "green", utilities.VEHICLE_SQUARE, 
+                    utilities.VEHICLE_AREA, "cyan")
 
         im.convert('RGB').save('{}/{}.jpg'.format(target_folder, img_count))
         img_count += 1

@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Yolo model
+yolov5s.pt
+
+# Results folder
+results/
