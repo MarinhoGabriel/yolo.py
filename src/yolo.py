@@ -2,6 +2,8 @@ import torch
 from PIL import Image, ImageDraw
 from shapely.geometry import LineString
 import utilities
+import os
+import sys
 
 # Model used in the object detection step, using the YOLOv5 algorithm.
 model = None
@@ -60,6 +62,13 @@ def draw_lines(elements, draw, color_yes, color_no, square, area, outline):
 
 def start(path, target_folder):
     # Starts the detection process, using the path and target passed as args.
+    if not os.path.isdir(path):
+        print("The specified directory does not exist!")
+        sys.exit()
+
+    if not os.path.isdir(target_folder):
+        os.makedirs(target_folder)
+
     init_model()
     img_count = 1
     files = utilities.get_img_files(path)
