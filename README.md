@@ -51,5 +51,4 @@ $ python3 main.py pics_folder target_folder
 It's important to say, again, that Python 3.6+ is needed to run because of the Yolov5 model.
 
 ## References
-
-## Authors
+You can find the YOLO documentation at [YOLOv5 Docs](https://docs.ultralytics.com)
