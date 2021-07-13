@@ -1,6 +1,7 @@
 from shapely.geometry import LineString
 import os
 import glob
+import cv2
 
 # The passerby area is the car area which is considered safe, when
 # there is no one inside of it. In other words, the PASSERBY_AREA is
@@ -51,3 +52,16 @@ def get_img_files(path):
     # that we are going to detect the objects. It has a parameter, which is 
     # the base directory of all of them.
     return sorted(filter(os.path.isfile, glob.glob(path + '/*')))
+
+def convert_video(video_path, target_path):
+    # Gets a video from the parameter video_path and converts it into a 
+    # sequence of images to use the YOLO algorithm on those clips.
+    capture = cv2.VideoCapture(video_path)
+    success, clip = capture.read()
+    capture_count = 0
+
+    while success:
+        clip = cv2.resize(clip, (1280, 720))
+        cv2.imwrite(os.path.join(target_path, 'frame{}.jpg'.format(capture_count)), clip)
+        success, clip = capture.read()
+        capture_count += 1
